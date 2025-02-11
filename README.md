@@ -1,141 +1,72 @@
-# -ML-EDA
-GenZ Dating App Dataset
+# GenZ Survey Data Documentation
 
-Overview
+## Overview
 
-This dataset contains information on how GenZ users engage with dating apps. It includes demographic details, app preferences, usage behavior, and user sentiments.
+This dataset contains survey responses from GenZ individuals regarding their app usage, satisfaction levels, and demographics. The data was cleaned and standardized for consistency and analysis.
 
-Data Summary
+## Data Dictionary
 
-Total Rows: 500
+| Column Name        | Data Type | Description                                           |
+| ------------------ | --------- | ----------------------------------------------------- |
+| `Age`              | Integer   | Age of the respondent.                                |
+| `Gender`           | Category  | Gender of the respondent (e.g., Male, Female, Other). |
+| `Primary_App`      | Category  | The main app used daily.                              |
+| `Secondary_Apps`   | Category  | Other frequently used apps.                           |
+| `Daily_Usage_Time` | Integer   | Time spent on the primary app daily (in minutes).     |
+| `Satisfaction`     | Integer   | Satisfaction level (scale of 1-10).                   |
 
-Total Columns: 16
+## Data Cleaning Steps
 
-Missing Values: Primary_App has some missing values
+1. **Handled Missing Values:**
 
-Data Types:
+   - Replaced missing values with `"unknown"` for consistency.
 
-Numeric: User_ID, Age, Satisfaction
+2. **Removed Duplicates:**
 
-Categorical: Gender, Location, Education, etc.
+   - Checked and confirmed no duplicate rows were present.
 
-Columns & Descriptions
+3. **Standardized Categorical Data:**
 
-Column Name
+   - Converted all text values to lowercase for uniformity.
 
-Data Type
+4. **Converted Categorical Columns to 'Category' dtype:**
 
-Description
+   - Optimized memory usage by converting categorical columns.
 
-User_ID
+5. **Converted Time to Numeric:**
 
-int
+   - Mapped daily usage time to minutes.
 
-Unique identifier for each user
+6. **Outlier Detection:**
+   - Checked `Age`, `Satisfaction`, and `Daily_Usage_Time` using the IQR method. No extreme outliers were found.
 
-Age
+## Exploratory Data Analysis (EDA)
 
-int
+### Key Findings:
 
-Age of the user
+- **Gender Differences:** Certain dating apps were more popular among specific genders.
+- **Age-Based Trends:** Users aged 18-24 spent the most time on dating apps.
+- **Urban vs. Rural Patterns:** Urban users showed higher engagement compared to rural users.
+- **Multiple App Usage:** A significant number of users were active on multiple dating apps.
 
-Gender
+## Feature Engineering
 
-object
+- **Encoded categorical variables** using Label Encoding.
+- **Normalized numerical variables** using MinMaxScaler.
+- **Created `Active_App_Count` feature** based on the number of apps used per user.
 
-Gender identity of the user
+## Future Improvements
 
-Location
+- Incorporate geospatial analysis if location data is more detailed.
+- Analyze the impact of user satisfaction on engagement levels.
+- Consider time-series modeling to observe trends over different periods.
 
-object
+## GitHub Workflow
 
-User's city of residence
+- **Branching:** `feature-EDA` was created for exploratory analysis.
+- **Pull Requests:** Opened for team feedback before merging.
+- **Final Merge:** All analysis and feature engineering updates were merged into `main`.
 
-Education
+## Summary
 
-object
-
-Highest level of education attained
-
-Occupation
-
-object
-
-User's employment status or role
-
-Primary_App
-
-object
-
-Main dating app used by the user
-
-Secondary_Apps
-
-object
-
-Other dating apps used
-
-Usage_Frequency
-
-object
-
-How often the user engages with dating apps
-
-Daily_Usage_Time
-
-object
-
-Average daily time spent on dating apps
-
-Reason_for_Using
-
-object
-
-The user's primary reason for using dating apps
-
-Satisfaction
-
-int
-
-User satisfaction rating (scale of 1-5)
-
-Challenges
-
-object
-
-Common issues faced by the user
-
-Desired_Features
-
-object
-
-Features users wish to see in dating apps
-
-Preferred_Communication
-
-object
-
-Preferred communication method
-
-Partner_Priorities
-
-object
-
-What users prioritize in a potential partner
-
-Data Cleaning Steps
-
-Missing Values:
-
-Primary_App: Fill missing values with "Unknown"
-
-Standardization:
-
-Normalize values for Usage_Frequency (e.g., "Daily" vs. "Everyday")
-
-Ensure consistency in categorical values (e.g., "Male" vs. "male")
-
-Outlier Detection:
-
-Use IQR method for Age and Satisfaction columns
-Machine Learning Class
+This project provides insights into Gen-Z dating behavior and prepares the dataset for predictive modeling. The structured documentation ensures ease of collaboration and future extensions.
